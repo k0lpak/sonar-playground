@@ -25,5 +25,5 @@ jobs:
           fetch-depth: 0
       - name: Build
         run: |
-          DOCKER_BUILDKIT=1 docker build -t sonardemo --build-arg DOCKER_TAG=sonardemo --build-arg SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} -f Dockerfile --progress=plain .
+          DOCKER_BUILDKIT=1 docker build -t sonardemo --build-arg DOCKER_TAG=sonardemo --build-arg SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} -f ./SonarPlaygroundGBActions/Dockerfile --progress=plain ./SonarPlaygroundGBActions/.
         shell: bash
