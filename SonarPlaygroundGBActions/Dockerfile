@@ -11,10 +11,10 @@ ARG SONAR_TOKEN
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y openjdk-11-jre
 
 ## Install sonarscanner
-RUN dotnet tool install --global dotnet-sonarscanner --version 5.3.1
+RUN dotnet tool install --global dotnet-sonarscanner --version 5.7.1
 
 ## Install report generator
-RUN dotnet tool install --global dotnet-reportgenerator-globaltool --version 4.8.12
+RUN dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.1.9
 
 ## Set the dotnet tools folder in the PATH env variable
 ENV PATH="${PATH}:/root/.dotnet/tools"
