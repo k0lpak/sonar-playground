@@ -1,18 +1,30 @@
-name: Docker Image CI
+name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - 'master'
+      - 'main'
+      - 'dev'
+      - 'release/**'
+      - 'rc/**'
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - 'master'
+      - 'main'
+      - 'dev'
 
 jobs:
 
   build:
-
+    name: Build, Test & Push
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file ./SonarPlaygroundGBActions/Dockerfile --tag my-image-name:$(date +%s)
+      - uses: actions/checkout@v3.0.2
+        with:
+          fetch-depth: 0
+      - name: Build
+          id: build
+          run: |
+            DOCKER_BUILDKIT=1 docker build -t sonardemo --build-arg DOCKER_TAG=sonardemo SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} -f Dockerfile --progress=plain .
+          shell: bash
