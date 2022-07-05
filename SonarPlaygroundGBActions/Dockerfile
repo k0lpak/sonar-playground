@@ -19,10 +19,7 @@ RUN dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.1
 ## Set the dotnet tools folder in the PATH env variable
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
-COPY ["SonarPlaygroundGBActions/SonarPlaygroundGBActions.csproj", "SonarPlaygroundGBActions/"]
-RUN dotnet restore "SonarPlaygroundGBActions/SonarPlaygroundGBActions.csproj"
 COPY . .
-#WORKDIR "/src/SonarPlaygroundGBActions"
 
 ## Start scanner
 RUN dotnet sonarscanner begin \
@@ -32,9 +29,9 @@ RUN dotnet sonarscanner begin \
 	/d:sonar.login="$SONAR_TOKEN" #\
 	#/d:sonar.coverageReportPaths="coverage/SonarQube.xml"
 
-RUN dotnet build "SonarPlaygroundGBActions.sln" -c Release -o /app/build
+RUN dotnet build "SonarPlaygroundGBActions.sln" 
 
-RUN  dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+RUN dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
 
 FROM build AS publish
 RUN dotnet publish "SonarPlaygroundGBActions.sln" -c Release -o /app/publish
