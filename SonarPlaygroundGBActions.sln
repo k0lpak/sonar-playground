@@ -2,6 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarPlaygroundGBActions", "SonarPlaygroundGBActions\SonarPlaygroundGBActions.csproj", "{0A103905-4241-4B30-8007-860A027E656C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{A0E77BFD-A98B-45A6-8AC2-8323F74476E3}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\docker-image.yml = .github\workflows\docker-image.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
