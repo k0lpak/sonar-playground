@@ -26,8 +26,9 @@ RUN dotnet sonarscanner begin \
 	/o:"k0lpak" \
 	/k:"k0lpak_sonar-playground" \
 	/d:sonar.host.url="https://sonarcloud.io" \
-	/d:sonar.login="$SONAR_TOKEN" && \
-	#/d:sonar.coverageReportPaths="coverage/SonarQube.xml"
+    /d:sonar.pullrequest.provider="github" \
+    /d:sonar.login="$SONAR_TOKEN" && \
+    #/d:sonar.coverageReportPaths="coverage/SonarQube.xml"
 	dotnet build "SonarPlaygroundGBActions.sln" && \
     dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
 
