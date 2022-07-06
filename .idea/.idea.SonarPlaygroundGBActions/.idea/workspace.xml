@@ -6,7 +6,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2afb9ae-ee09-4df0-8f20-3e1e0c66f98b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/docker-image.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/docker-image.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SonarPlaygroundGBActions/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SonarPlaygroundGBActions/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +73,7 @@
       <updated>1656431804551</updated>
       <workItem from="1656431809990" duration="1655000" />
       <workItem from="1656928282641" duration="1090000" />
-      <workItem from="1657122837728" duration="1522000" />
+      <workItem from="1657122837728" duration="2376000" />
     </task>
     <servers />
   </component>
