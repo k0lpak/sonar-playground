@@ -30,6 +30,8 @@ jobs:
           project-key: k0lpak_sonar-playground
           project-name: sonar-playground
           sonar-token: ${{ secrets.SONAR_TOKEN }}
+          build: |
+            dotnet build SonarPlaygroundGBActions.sln
       # - name: Initialization
       #   run: |
       #     dotnet tool install --global dotnet-sonarscanner --version 5.7.1
