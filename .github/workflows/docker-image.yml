@@ -26,6 +26,7 @@ jobs:
       - uses: ./.github/dev-actions/dotnet-sonar-scan
         name: Run SonarQube Scan
         with:
+          organization: k0lpak
           project-key: k0lpak_sonar-playground
           project-name: sonar-playground
           sonar-token: ${{ secrets.SONAR_TOKEN }}
