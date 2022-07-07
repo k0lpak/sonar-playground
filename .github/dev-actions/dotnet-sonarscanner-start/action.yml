@@ -1,0 +1,36 @@
+name: 'Run Sonar Scan Dotnet'
+description: 'Runs sonar scan for DotNet'
+inputs:
+  sonar-scanner-version:
+    description: 'Sonar Scanner Version.'
+    default: 5.7.1
+  install-java:
+    description: 'Script to install java'
+    default: apt-get update && apt-get dist-upgrade -y && apt-get install -y openjdk-11-jre
+  organization:
+    description: 'SonarQube Organization'
+    required: true
+  project-key:
+    description: 'SonarQube Project Key'
+    required: true
+  project-name:
+    description: 'SonarQube Project Name'
+    required: true
+  sonar-token:
+    description: 'Sonar Token'
+    required: true
+  sonarscanner-additional-keys:
+    description: 'Additional keys for sonar scanner'
+runs:
+  using: "composite"
+  steps:
+    - name: Initialization
+      run: |
+        dotnet tool install --global dotnet-sonarscanner --version ${{ inputs.sonar-scanner-version }}
+        ${{ inputs.install-java }}
+        PATH="${PATH}:/root/.dotnet/tools"
+      shell: bash
+    - name: Begin SonarQube
+      run: |
+        dotnet sonarscanner begin /o:"${{ inputs.organization }}" /k:"${{ inputs.project-key }}" /n:"${{ inputs.project-name }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ inputs.sonar-token }}" ${{ inputs.sonarscanner-additional-keys }}
+      shell: bash

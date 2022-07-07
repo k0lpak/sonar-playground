@@ -23,15 +23,29 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: ./.github/dev-actions/dotnet-sonar-scan
-        name: Run SonarQube Scan
+      - uses: ./.github/dev-actions/dotnet-sonarscanner-start
+        name: SonarScanner Start
         with:
           organization: k0lpak
           project-key: k0lpak_sonar-playground
           project-name: sonar-playground
           sonar-token: ${{ secrets.SONAR_TOKEN }}
-          build: |
-            dotnet build SonarPlaygroundGBActions.sln
+      - name: Build
+        run: |
+          dotnet build SonarPlaygroundGBActions.sln
+      - uses: ./.github/dev-actions/dotnet-sonarscanner-end
+        name: SonarScanner Start
+        with:
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+      # - uses: ./.github/dev-actions/dotnet-sonar-scan
+      #   name: Run SonarQube Scan
+      #   with:
+      #     organization: k0lpak
+      #     project-key: k0lpak_sonar-playground
+      #     project-name: sonar-playground
+      #     sonar-token: ${{ secrets.SONAR_TOKEN }}
+      #     build: |
+      #       dotnet build SonarPlaygroundGBActions.sln
       - name: SonarQube Quality Gate check
         uses: sonarsource/sonarqube-quality-gate-action@master
         timeout-minutes: 5

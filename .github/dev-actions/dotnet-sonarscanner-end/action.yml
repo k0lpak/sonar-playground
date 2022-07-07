@@ -1,0 +1,13 @@
+name: 'Run Sonar Scan Dotnet'
+description: 'Runs sonar scan for DotNet'
+inputs:
+  sonar-token:
+    description: 'Sonar Token'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: End SonarQube
+      run: |
+        dotnet sonarscanner end /d:sonar.login="${{ inputs.sonar-token }}"
+      shell: bash
