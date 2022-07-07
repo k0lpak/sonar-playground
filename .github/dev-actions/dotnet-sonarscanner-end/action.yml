@@ -9,6 +9,5 @@ runs:
   steps:
     - name: End SonarQube
       run: |
-        export PATH="$PATH:/github/home/.dotnet/tools:/root/.dotnet/tools"
-        dotnet-sonarscanner end /d:sonar.login="${{ inputs.sonar-token }}"
+        dotnet sonarscanner end /d:sonar.login="${{ inputs.sonar-token }}"
       shell: bash
