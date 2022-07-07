@@ -1,4 +1,4 @@
-name: 'Run Sonar Scan Dotnet'
+name: 'Start SonarScanner Dotnet'
 description: 'Runs sonar scan for DotNet'
 inputs:
   sonar-scanner-version:
