@@ -31,8 +31,7 @@ jobs:
           project-key: k0lpak_sonar-playground
           project-name: sonar-playground
           sonar-token: ${{ secrets.SONAR_TOKEN }}
-          build: |
-            dotnet build SonarPlaygroundGBActions.sln
+          build: dotnet build SonarPlaygroundGBActions.sln
       - name: SonarQube Quality Gate check
         uses: sonarsource/sonarqube-quality-gate-action@master
         timeout-minutes: 5
