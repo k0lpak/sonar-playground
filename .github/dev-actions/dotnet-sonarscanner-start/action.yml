@@ -27,8 +27,7 @@ runs:
     - name: Initialization
       run: |
         dotnet tool install --global dotnet-sonarscanner --version ${{ inputs.sonar-scanner-version }}
-        PATH="${PATH}:/root/.dotnet/tools:/github/home/.dotnet/tools"
-        echo $PATH
+        export PATH="${PATH}:/root/.dotnet/tools:/github/home/.dotnet/tools"
         ${{ inputs.install-java }}
       shell: bash
     - name: Begin SonarQube
