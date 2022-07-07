@@ -30,7 +30,7 @@ jobs:
           project-key: k0lpak_sonar-playground
           project-name: sonar-playground
           sonar-token: ${{ secrets.SONAR_TOKEN }}
-          build: |
+          build-command: |
             dotnet build SonarPlaygroundGBActions.sln
       # - name: Initialization
       #   run: |
