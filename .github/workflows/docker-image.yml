@@ -18,6 +18,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:6.0
 
     steps:
       - uses: actions/checkout@v3
@@ -34,7 +35,7 @@ jobs:
         run: |
           dotnet build SonarPlaygroundGBActions.sln
       - uses: ./.github/dev-actions/dotnet-sonarscanner-end
-        name: SonarScanner Start
+        name: SonarScanner End
         with:
           sonar-token: ${{ secrets.SONAR_TOKEN }}
       - name: SonarQube Quality Gate check
