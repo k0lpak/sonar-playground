@@ -19,7 +19,7 @@ inputs:
   sonar-token:
     description: 'Sonar Token'
     required: true
-  build-command:
+  build:
     description: 'Build Command'
     required: true
     default: |
