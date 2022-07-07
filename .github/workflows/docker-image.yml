@@ -15,15 +15,45 @@ on:
       - 'dev'
 
 jobs:
-
   build:
-    name: Build, Test & Push
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - uses: ./.github/dev-actions/dotnet-sonarscanner-start
+        name: SonarScanner Start
+        with:
+          organization: k0lpak
+          project-key: k0lpak_sonar-playground
+          project-name: sonar-playground
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
       - name: Build
         run: |
-          DOCKER_BUILDKIT=1 docker build -t sonardemo --build-arg DOCKER_TAG=sonardemo --build-arg SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} -f ./SonarPlaygroundGBActions/Dockerfile --progress=plain .
-        shell: bash
+          dotnet build SonarPlaygroundGBActions.sln
+      - uses: ./.github/dev-actions/dotnet-sonarscanner-end
+        name: SonarScanner End
+        with:
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarQube Quality Gate check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          scanMetadataReportFile: .sonarqube/out/.sonar/report-task.txt
+#jobs:
+#
+#  build:
+#    name: Build, Test & Push
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3.0.2
+#        with:
+#          fetch-depth: 0
+#      - name: Build
+#        run: |
+#          DOCKER_BUILDKIT=1 docker build -t sonardemo --build-arg DOCKER_TAG=sonardemo --build-arg SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} --build-arg BRANCH_NAME=${{ github.ref_name }} -f ./SonarPlaygroundGBActions/Dockerfile --progress=plain .
+#        shell: bash
