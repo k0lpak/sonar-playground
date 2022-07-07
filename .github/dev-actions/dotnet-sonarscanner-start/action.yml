@@ -32,5 +32,5 @@ runs:
       shell: bash
     - name: Begin SonarQube
       run: |
-        dotnet sonarscanner begin /o:"${{ inputs.organization }}" /k:"${{ inputs.project-key }}" /n:"${{ inputs.project-name }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ inputs.sonar-token }}" ${{ inputs.sonarscanner-additional-keys }}
+        dotnet-sonarscanner begin /o:"${{ inputs.organization }}" /k:"${{ inputs.project-key }}" /n:"${{ inputs.project-name }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ inputs.sonar-token }}" ${{ inputs.sonarscanner-additional-keys }}
       shell: bash
